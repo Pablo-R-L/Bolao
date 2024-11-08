@@ -1,0 +1,65 @@
+{
+    "First": {
+        "Media": 0,
+        "Fase1": {
+            "Rodada1": 0,
+            "Rodada2": 0,
+            "Rodada3": 0,
+            "Rodada4": 0
+        },
+        "Fase2": {
+            "Rodada1": 0,
+            "Rodada2": 0,
+            "Rodada3": 0
+        },
+        "Fase3": {
+            "Rodada1": 0,
+            "Rodada2": 0
+        },
+        "Fase4": {
+            "Rodada1": 0
+        }
+    },
+    "uai": {
+        "Media": 0,
+        "Fase1": {
+            "Rodada1": "",
+            "Rodada2": "",
+            "Rodada3": "",
+            "Rodada4": ""
+        },
+        "Fase2": {
+            "Rodada1": "",
+            "Rodada2": "",
+            "Rodada3": ""
+        },
+        "Fase3": {
+            "Rodada1": "",
+            "Rodada2": ""
+        },
+        "Fase4": {
+            "Rodada1": ""
+        }
+    },
+    "uaiaui": {
+        "Media": 0,
+        "Fase1": {
+            "Rodada1": "",
+            "Rodada2": "",
+            "Rodada3": "",
+            "Rodada4": ""
+        },
+        "Fase2": {
+            "Rodada1": "",
+            "Rodada2": "",
+            "Rodada3": ""
+        },
+        "Fase3": {
+            "Rodada1": "",
+            "Rodada2": ""
+        },
+        "Fase4": {
+            "Rodada1": ""
+        }
+    }
+}

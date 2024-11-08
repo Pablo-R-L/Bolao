@@ -1,0 +1,7 @@
+jdfisop´fdisoadf~lgfdsgfdksvmmmvf]d]]]getkasfeopodsjjfdjndfnid
+dkikkkshauwegdwsa´´´fdeiwfd383910jdkpxorfjcsagyuishda´pYYGDfeij]
+C:/Users/pablo/Desktop/Programacao/PythonPlot/Bolao/Saves/Exemplo.json
+jdfisop´fdisoadf~lgfdsgfdksvmmmvf]d]]]getkasfeopodsjjfdjndfnid
+dkikkkshauwegdwsa´´´fdesofieifjhepraparecerfeiujhfcomplicadofiurej
+iwfd383910jdkpxorfjcsagyuishda´pYYGDfeij]
+tkinter.messagebox.showinfo(title="Arquivo não encontrado", message="Verifique se o ultimo bolao aberto aqui ainda está na pasta \"Saves\"")

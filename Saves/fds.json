@@ -1,0 +1,46 @@
+{
+    "First": {
+        "Media": 55,
+        "Fase1": {
+            "Rodada1": "1",
+            "Rodada2": "2",
+            "Rodada3": "3",
+            "Rodada4": "4",
+            "Rodada5": "5",
+            "Rodada6": "1",
+            "Rodada7": "2",
+            "Rodada8": "3",
+            "Rodada9": "4",
+            "Rodada10": "5"
+        },
+        "Fase2": {
+            "Rodada1": "6",
+            "Rodada2": "7",
+            "Rodada3": "3",
+            "Rodada4": "4",
+            "Rodada5": "5"
+        }
+    },
+    "bdbc": {
+        "Media": 1445,
+        "Fase1": {
+            "Rodada1": "999",
+            "Rodada2": "3",
+            "Rodada3": "4",
+            "Rodada4": "55",
+            "Rodada5": "3",
+            "Rodada6": "3",
+            "Rodada7": "3",
+            "Rodada8": "333",
+            "Rodada9": "",
+            "Rodada10": ""
+        },
+        "Fase2": {
+            "Rodada1": "41",
+            "Rodada2": "1",
+            "Rodada3": "bb",
+            "Rodada4": "as",
+            "Rodada5": "vsf"
+        }
+    }
+}

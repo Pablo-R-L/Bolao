@@ -1,0 +1,78 @@
+{
+    "First": {
+        "Media": 0,
+        "Fase1": {
+            "Rodada1": 0
+        },
+        "Fase2": {
+            "Rodada1": 0,
+            "Rodada2": 0
+        },
+        "Fase3": {
+            "Rodada1": 0,
+            "Rodada2": 0,
+            "Rodada3": 0,
+            "Rodada4": 0
+        },
+        "Fase4": {
+            "Rodada1": 0,
+            "Rodada2": 0,
+            "Rodada3": 0,
+            "Rodada4": 0,
+            "Rodada5": 0,
+            "Rodada6": 0,
+            "Rodada7": 0,
+            "Rodada8": 0
+        },
+        "Fase5": {
+            "Rodada1": 0,
+            "Rodada2": 0,
+            "Rodada3": 0,
+            "Rodada4": 0,
+            "Rodada5": 0,
+            "Rodada6": 0,
+            "Rodada7": 0,
+            "Rodada8": 0,
+            "Rodada9": 0,
+            "Rodada10": 0
+        }
+    },
+    "cfa": {
+        "Media": 2222,
+        "Fase1": {
+            "Rodada1": "2222"
+        },
+        "Fase2": {
+            "Rodada1": "",
+            "Rodada2": ""
+        },
+        "Fase3": {
+            "Rodada1": "",
+            "Rodada2": "",
+            "Rodada3": "",
+            "Rodada4": ""
+        },
+        "Fase4": {
+            "Rodada1": "",
+            "Rodada2": "",
+            "Rodada3": "",
+            "Rodada4": "",
+            "Rodada5": "",
+            "Rodada6": "",
+            "Rodada7": "",
+            "Rodada8": ""
+        },
+        "Fase5": {
+            "Rodada1": "",
+            "Rodada2": "",
+            "Rodada3": "",
+            "Rodada4": "",
+            "Rodada5": "",
+            "Rodada6": "",
+            "Rodada7": "",
+            "Rodada8": "",
+            "Rodada9": "",
+            "Rodada10": ""
+        }
+    }
+}

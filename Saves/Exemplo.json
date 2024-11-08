@@ -1,0 +1,13 @@
+{
+    "First": {
+        "Media": null,
+        "Fase1": {
+            "Rodada1": 1,
+            "Rodada2": 2
+        },
+        "Fase2": {
+            "Rodada1": 3,
+            "Rodada2": 4
+        }
+    }
+}
