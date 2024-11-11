@@ -6,7 +6,7 @@ class Jogador:
     labelMedia = 0
 
 
-    def __init__(self, Fases, Rodadas, Fileira, mainFrame, db, nomedb):
+    def __init__(self, Fases, Rodadas, Fileira, db, nomedb, osTabs):
         #nomeDiff serve pra saber quando o nome for alterado
         self.nomeDiff = ""
         self.coluna = 0
@@ -19,24 +19,24 @@ class Jogador:
         
         self.fileira = Fileira
 
-        self.fileira = Fileira
         self.textoRodadas = []
-        self.nome = customtkinter.CTkTextbox(mainFrame, height=1, width=100)
-        self.nome.grid(pady=3, padx=3, column=self.coluna, row=Fileira)
-        self.nome.insert(1.0, nomedb)
-        self.nomeDiff = self.nome.get(0.0, 'end').replace("\n", "")
 
         
         for fase in range(Fases):
             self.coluna= self.coluna +10
-            #label pra manter um certa distancia entre cada fase
-            mopagano = customtkinter.CTkLabel(mainFrame, height=1, width=10, text="")
-            mopagano.grid(column=self.coluna, row=Fileira, padx=3, pady=3)
+            # #label pra manter um certa distancia entre cada fase
+            # mopagano = customtkinter.CTkLabel(mainFrame, height=1, width=10, text="")
+            # mopagano.grid(column=self.coluna, row=Fileira, padx=3, pady=3)
+
             
+            self.nome = customtkinter.CTkTextbox(osTabs[fase], height=1, width=100)
+            self.nome.grid(pady=3, padx=3, column=self.coluna, row=Fileira)
+            self.nome.insert(1.0, nomedb)
+            self.nomeDiff = self.nome.get(0.0, 'end').replace("\n", "")
             
             for rodada in range(Rodadas[fase]):
                 self.coluna = self.coluna + 10
-                text = customtkinter.CTkTextbox(mainFrame, height=1, width=80)
+                text = customtkinter.CTkTextbox(osTabs[fase], height=1, width=80)
                 self.textoRodadas.append(text)
                 text.grid(pady=3, padx=3, column=self.coluna, row=Fileira)
                 if db != None:
@@ -107,11 +107,12 @@ class Jogador:
         nm = self.nome
         lm = self.labelMedia
         fi = pos #posição desejada
+
         for i in tr:
-            i.grid(row=fi)
-        nm.grid(row=fi)
-        lm.grid(row=fi)
-        self.fileira = pos
+            i.grid(row=fi*10)
+        nm.grid(row=fi*10)
+        lm.grid(row=fi*10)
+        self.fileira = pos*10
         
     #=================================================================================================
     

@@ -31,23 +31,27 @@ def firstRodada(rodada, jogadores):
 #=============================================================================================================
 
 #meio obvio ne, recebe so o array dos jogadores
+#TODO -- Tirar essa porra desse trocou pq ele n precisa ta aí
 def ordemMedia(jogadores):
     arrombados = jogadores.copy()
     bct = True
     while bct:
-        trocou = False
+        trocou = False #avisa quando n tem mais trocas pra fazer
+        
         for i in range(len(arrombados)):
+            #se não é o ultimo e tem a media menor q a do proximo
             if i+1 < len(arrombados) and arrombados[i].infos["Media"] < arrombados[i+1].infos["Media"]:
+                #troca a posição dos elementos e avisa que houve uma troca
                 trocou = True
                 placeholder = arrombados[i]
                 arrombados[i] = arrombados[i+1]
                 arrombados[i+1] = placeholder
                 
-        
+        #nenhuma outra troca foi feita
         if trocou == False: 
             bct = False
 
-
+    #novo array
     return(arrombados)
 
 #---------------------------------------------------------------------------------------------------------------

@@ -8,6 +8,7 @@ import json
 
 from JogaeJoga import Jogador
 from Labels import Lambida
+import Tabs
 import Commands
 import novoBolao
 from CTkXYFrame import *
@@ -40,13 +41,16 @@ quantasFases = len(db["First"]) -1 #-1 por causa da media
 quantasRodadas = []
 pause = False #pausa o loop
 osLabels = ""
-osTabs = []
+
+tabPai = "" #tabview onde os tabs vao ser adcionados
+osTabs = [] #lista dos tabs para facil acesso na memoria
+osMainFrames =[] #cada tab vai ter que ter um mainframe
 
 #==========================================================================================================================================
 
 #Inicia ne porra sabe ler n?
 def iniciarK():
-    global jogadores, fileira, quantasFases, quantasRodadas, osLabels
+    global jogadores, fileira, quantasFases, quantasRodadas, osLabels, tabPai, osTabs
     fileira = 10 #mantem em conta a proxima fileira livre
     jogadores = []
     quantasFases = len(db["First"]) -1 #-1 pra n contar com o atributo "media" que ta no arquivo jason
@@ -59,15 +63,45 @@ def iniciarK():
             quantasRodadas.append(len(db["First"][fase]))
     
     
-    #para cada jogador, sem contar o placeholder "First", ele vai ser adcionado no array de objetos "jogadores"
+    #primeiro pra cada fase tem que ter um tab
+    #pra cada tab tem que ter um main frame
+    tabPai = customtkinter.CTkTabview(root)
+    tabPai.pack(fill = BOTH, expand=1)
+    
+        
+    rod = 0 
+    for rodadas in db["First"]:
+           
+          
+        if rodadas != "Media":
+                rod = rod+1
+                newTab = tabPai.add("Fase " + str(rod))
+                osTabs.append(newTab)
+                geck = CTkXYFrame(newTab)
+                geck.pack(fill = BOTH, expand=1)  
+                osMainFrames.append(geck)
+        
+
     for jog in db:
         if jog != "First":
-            jogadores.append(Jogador(Fileira=fileira, mainFrame=mainFrame, Fases=quantasFases, Rodadas=quantasRodadas, nomedb=jog, db=db[jog]))
+            jogadores.append(Jogador(Fileira=fileira, osTabs=osMainFrames, Fases=quantasFases, Rodadas=quantasRodadas, nomedb=jog, db=db[jog]))
+            fileira = fileira + 100
         else:
-            #como first é sempre o primeiro no json isso aqui roda sempre primeiro
-            #serve pra fazer os labes na parte de cima que indicam as fases e as rodadas
-            osLabels = Lambida(Fileira=fileira, mainFrame= mainFrame, Fases=quantasFases, Rodadas=quantasRodadas, db=db[jog])
-        fileira = fileira + 10
+            osLabels = Lambida(Fileira=fileira, osMainframes= osMainFrames, Fases=quantasFases, Rodadas=quantasRodadas, db=db[jog])
+    
+
+    
+    #deixa isso aqui comentado dps decide se faz um tab com todas as fases
+
+    #para cada jogador, sem contar o placeholder "First", ele vai ser adcionado no array de objetos "jogadores"
+    # for jog in db:
+    #     if jog != "First":
+    #         jogadores.append(Jogador(Fileira=fileira, mainFrame=mainFrame, Fases=quantasFases, Rodadas=quantasRodadas, nomedb=jog, db=db[jog]))
+    #     else:
+    #         #como first é sempre o primeiro no json isso aqui roda sempre primeiro
+    #         #serve pra fazer os labes na parte de cima que indicam as fases e as rodadas
+    #         osLabels = Lambida(Fileira=fileira, mainFrame= mainFrame, Fases=quantasFases, Rodadas=quantasRodadas, db=db[jog])
+    #     fileira = fileira + 10
 
 #==========================================================================================================================================
 
@@ -139,11 +173,12 @@ def substituirBolao(save):
 #adciona um jogador com o botao "Add"
 def addJogador():
     global jogadores, fileira
-    jogadores.append(Jogador(Fileira=fileira, mainFrame=mainFrame, Fases=quantasFases, Rodadas=quantasRodadas, db=None, nomedb=""))
+    jogadores.append(Jogador(Fileira=fileira, osTabs=osMainFrames, Fases=quantasFases, Rodadas=quantasRodadas, db=None, nomedb=""))
     fileira = fileira + 100
 
 #==============================================================================================================================================
 
+#TODO -- tudo aqui é so no primeiro tab, dps concerta
 #loop geral da janela
 inicial = True
 def loop():
@@ -153,7 +188,8 @@ def loop():
         #atualiza a media dos jogadores
         for jogador in jogadores:
             jogador.getMedia()
-            jogador.setMedia(mainFrame)
+            for mainFrame in osMainFrames:
+                jogador.setMedia(mainFrame)
       
         #atualiza o jogador mais foda da rodada
         salvestate = 0
@@ -174,7 +210,7 @@ def loop():
 
 #so inicia a janela------------------------------------------------------------------------------------------
 root = customtkinter.CTk()
-root.geometry("600x300")
+root.geometry("750x450")
 
 
 #cria os botoes da janela
@@ -190,12 +226,11 @@ mainMenu.menu.add_command(label="Carregar", command=abrir)
 
 
 
-mainFrame = CTkXYFrame(root)
-mainFrame.pack(fill = BOTH, expand=1)
+
 
 root.bind("<Control-s>", salvarAtalho)
 
-customtkinter.CTkButton(root, cursor="hand2", text='Add', command=addJogador, width=3).pack(side=LEFT)
+customtkinter.CTkButton(root, cursor="hand2", text='Add', command=addJogador, width=3).pack(side=LEFT, anchor=S)
 root.after(100,loop) 
 
 if erro != 0:
@@ -203,6 +238,7 @@ if erro != 0:
 
 #coloca os usuarios do json na tela
 iniciarK()
+
 
 #inicia
 root.mainloop()
