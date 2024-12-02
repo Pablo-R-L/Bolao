@@ -23,7 +23,6 @@ def firstRodada(rodada, jogadores):
         if i != marcar:
            i.textoRodadas[rodada].configure(border_width=0, fg_color='#1c1c1c')
            
-    #print(marcar.textoRodadas[rodada].get(0.0, 'end'))
     if marcar != '':
         marcar.textoRodadas[rodada].configure(border_width=2, border_color='#ffe08a', fg_color='#363635')
 #colocar a lista em sequecia do com maior media pro com menor media
@@ -54,10 +53,29 @@ def ordemMedia(jogadores):
     #novo array
     return(arrombados)
 
+def ordemMediaRodadas(jogadores, mainframe):
+    arrombados = jogadores.copy()
+    trocou = True
+    while trocou:
+        trocou = False
+        for i in range(len(arrombados)):
+            print(arrombados[i].labelMediaRodada[mainframe].cget("text"))
+            if i+1 < len(arrombados) and arrombados[i].labelMediaRodada[mainframe].cget("text") < arrombados[i+1].labelMediaRodada[mainframe].cget("text"):
+                trocou = True
+                placeholder = arrombados[i]
+                arrombados[i] = arrombados[i+1]
+                arrombados[i+1] = placeholder
+    return (arrombados)
+
 #---------------------------------------------------------------------------------------------------------------
 
-def mediaOrdemList(jogadores):
-    osFudidos = ordemMedia(jogadores)
+def mediaOrdemList(jogadores, mediaOrdem, mainframe):
+    if mediaOrdem:
+        osFudidos = ordemMedia(jogadores)
+    else:
+        print("chamou")
+        osFudidos = ordemMediaRodadas(jogadores, mainframe)
+    
     for fud in range(len(osFudidos)):
         osFudidos[fud].sobeDesce(fud+1)
 
@@ -72,7 +90,7 @@ def criarNovo(fases, rodadas, nome):
         for r in range(rodadas[f-1]):
             db["First"]["Fase" + str(f)]["Rodada" + str(r+1)] = 0
 
-    with open(f"Bolao\\Saves\\{nome}.json", "w") as gano:
+    with open(f"Saves\\{nome}.json", "w") as gano:
         json.dump(db, gano, indent=4)
     return db
 

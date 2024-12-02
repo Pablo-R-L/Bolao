@@ -1,6 +1,7 @@
 import customtkinter
 from tkinter import *
 import Commands
+import json
 
 fasesNovoBolao = '' #quantia de fases
 frameDoNovobola = ''#frame dos combo boxes
@@ -11,15 +12,17 @@ newBolaoWindow = '' #a janela
 fileira = 3 #fileira pro grid
 textoNome = '' #Nome do arquivo do novo bolao
 
+
+
+
 #vai criar a nova janela e vai dar start no loop logo abaixo
 def criarNovoBolao():
     global fasesNovoBolao, newBolaoWindow, frameDoNovobola, textoNome
-    
     #so a nova janela msm
     newBolaoWindow = customtkinter.CTkToplevel()
     newBolaoWindow.title("Especificações Novo Bolão")
     newBolaoWindow.geometry("400x300")
-
+    
     frameDoNovobola = customtkinter.CTkScrollableFrame(newBolaoWindow, width=500)
     frameDoNovobola.grid(row=10)
 
@@ -31,16 +34,17 @@ def criarNovoBolao():
     fasesNovoBolao.grid(column=0, row=1, padx=40)
 
     #botao pra finalizar e terminar
-    readyB = customtkinter.CTkButton(newBolaoWindow, text="Pronto", command=Allset)
+    readyB = customtkinter.CTkButton(newBolaoWindow, text="Pronto")
     readyB.grid(row=100)
 
     textoNome = customtkinter.CTkEntry(newBolaoWindow, placeholder_text="Nome do arquivo", )
     textoNome.place(x=10, y=260)
 
-    
     newBolaoWindow.after(1000,newBolaoWindow.focus())
-    
     newBolaoWindow.after(1000, novoBolaoLoop)
+    return(readyB)
+
+    
     
 #======================================================================================================================================================
 
@@ -49,12 +53,15 @@ def Allset():
     for i  in rodadasLista:
         rodadas.append(int(i.get()))
     
+    #se o nome do arquivo estiver vazio, otexto vai ficar vermelho
     if textoNome.get() == ' ' or textoNome.get() == '':
         textoNome.configure(fg_color='red')
         newBolaoWindow.after(400, lambda:textoNome.configure(fg_color='grey'))
     else:
         Commands.criarNovo(fases=int(fasesNovoBolao.get()), rodadas=rodadas, nome=textoNome.get())
+        
         newBolaoWindow.destroy()
+
 
 #======================================================================================================================================================
 
@@ -67,9 +74,9 @@ def novoBolaoLoop():
     
     if fasesNovoBolao.get().isnumeric() and int(fasesNovoBolao.get()) > 0:
         quantasFases = int(fasesNovoBolao.get())
-    #print(fasesLista)
-    
 
+    
+    #quando aumentar a quantia de fases vai gerar mais
     if quantasFases > len(fasesLista):
         for i in range(len(fasesLista) + 1, int(quantasFases) + 1):
             rodadasLista.append(customtkinter.CTkComboBox(frameDoNovobola, values=["1","2","3","4","5","6","7","8","9","10"], button_color="#6592db", border_color="#6592db", dropdown_fg_color="#6592db", width=80))
@@ -77,7 +84,8 @@ def novoBolaoLoop():
             fasesLista.append(customtkinter.CTkLabel(frameDoNovobola, text="Fase " + str(i)))
             fasesLista[i-1].grid(row=fileira, pady=3)
             fileira = fileira + 3
-            
+
+    #quando diminuir a quantia de fases vai deletar        
     elif int(quantasFases) < len(fasesLista):
         salvaFaseListaLen = len(fasesLista)
         for i in range(1, len(fasesLista) - int(quantasFases)+1):
@@ -90,3 +98,8 @@ def novoBolaoLoop():
     newBolaoWindow.after(500, novoBolaoLoop)
 
     #私のパンツはたわごとでいっぱいです
+
+#======================================================================================================================================================
+
+
+    
